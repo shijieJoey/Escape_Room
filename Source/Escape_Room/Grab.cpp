@@ -87,17 +87,20 @@ void UGrab::Grab()
 	if (HitResult.GetActor())
 	{
 		HitDistanceRatio = HitResult.Distance / ReachDistance;
-		PhysicsHandleComponent->GrabComponentAtLocation(
-			HitResult.GetComponent(),
-			NAME_None,
-			HitResult.Location
-		);
+		if (PhysicsHandleComponent)
+		{
+			PhysicsHandleComponent->GrabComponentAtLocation(
+				HitResult.GetComponent(),
+				NAME_None,
+				HitResult.Location
+			);
+		}
 	}
 }
 
 void UGrab::Release()
 {
-	if (PhysicsHandleComponent->GrabbedComponent)
+	if (PhysicsHandleComponent && PhysicsHandleComponent->GrabbedComponent)
 	{
 		PhysicsHandleComponent->ReleaseComponent();
 	}
@@ -105,7 +108,7 @@ void UGrab::Release()
 
 void UGrab::UpdateGrabbedComponentLocation()
 {
-	if (PhysicsHandleComponent->GrabbedComponent)
+	if (PhysicsHandleComponent && PhysicsHandleComponent->GrabbedComponent)
 	{
 		PhysicsHandleComponent->SetTargetLocation(GetPlayerReachPoint(HitDistanceRatio));
 	}
