@@ -80,6 +80,9 @@ DerivedDataCache/*
 
 Content/StarterContent/*
 
+# MedievalDungeon Content Ignored
+Content/MedievalDungeon/*
+
 VSCode Files
 /.vscode/*
 BuildingEscape.code-workspace
